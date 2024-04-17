@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+string bubblesort(string a){
+    char temp;
+    for(int i = 0;i < a.length();i++){
+        for(int j=0;j<a.length()-1;j++){
+            if(a[j+1]>a[j]){
+                temp = a[j];
+                a[j]=a[j+1];
+                a[j+1]=temp;
+            }
+        }
+    }
+    return a;
+}
+string toLower(string data){
+    for(int i=0;i < data.length();i++){
+        if(data[i]>='A' && data[i]<='Z'){
+            data[i]+=32;
+        }
+    }
+    return data;
+}
+bool anagram(string a,string b){
+    a=bubblesort(toLower(a));
+    b=bubblesort(toLower(b));
+    if(a==b) return true;
+    return false;
+}
+bool palindrom(string w){
+    for(int i=0;i<w.length()/2;i++){
+        if(w[i]!=w[w.length()-1-i]){
+
+            return false;
+        }
+
+
+        return true;
+    }
+}
+
+int main()
+{
+    string a,b;
+
+    cin >> a;
+    cin >>b;
+
+    cout << angram(a,b) << endl;
+
+    string w;
+    cin >> w;
+    cout << palindrom(w) << endl;
+
+    return 0;
+}

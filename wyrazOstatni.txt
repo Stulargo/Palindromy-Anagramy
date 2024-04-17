@@ -1,0 +1,34 @@
+#include iostream
+#include fstream
+
+using namespace std;
+
+string ostatniWyraz(string a) {
+    string b = ;
+    for (int i = 0; i  a.length(); i++) {
+        if (a[i] == ' ') {
+            b = ;
+        } else {
+            b += a[i];
+        }
+    }
+    return b;
+    
+}
+
+int main()
+{
+    fstream plik;
+    plik.open(dane.txt, iosin);
+    
+    string a;
+    for (int i = 0; i  5; i++) {
+        getline(plik, a);
+        cout  ostatniWyraz(a)     isPalindrom(ostatniWyraz(a))  endl;
+    }
+    
+    plik.close();
+    
+    
+    return 0;
+}
