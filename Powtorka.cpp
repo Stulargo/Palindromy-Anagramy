@@ -275,5 +275,65 @@ int main() {
     return 0;
 }
 
+//
+
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+//Chuj wie czy to dobrze ale moze sie komus sprzyda
+bool czyAnagram(char slowo1[], char slowo2[]) {
+
+    int dlugosc1 = 0, dlugosc2 = 0;
+    while (slowo1[dlugosc1] != '\0') dlugosc1++;
+    while (slowo2[dlugosc2] != '\0') dlugosc2++;
+    if (dlugosc1 != dlugosc2)
+        return false;
+
+    int liczniki1[256] = {0}; 
+    int liczniki2[256] = {0};
+
+    for (int i = 0; i < dlugosc1; i++) {
+        liczniki1[slowo1[i]]++;
+    }
+
+    for (int i = 0; i < dlugosc2; i++) {
+        liczniki2[slowo2[i]]++;
+    }
+
+    for (int i = 0; i < 256; i++) {
+        if (liczniki1[i] != liczniki2[i])
+            return false;
+    }
+
+    return true;
+}
+
+int main() {
+    ifstream plik("slow.txt");
+    if (!plik.is_open()) {
+        cerr << "Nie można otworzyć pliku." << endl;
+        return 1;
+    }
+
+    int liczba_anagramow = 0;
+    char slowo1[20], slowo2[20];
+
+    while (plik >> slowo1 >> slowo2) {
+        if (czyAnagram(slowo1, slowo2)) {
+            liczba_anagramow++;
+        }
+    }
+
+    cout << "Liczba par słów będących anagramami: " << liczba_anagramow << endl;
+
+    plik.close();
+
+    return 0;
+}
+
+
 
 
